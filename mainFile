@@ -1,11 +1,11 @@
-#include <LiquidCrystal.h>
-
-int relayPin = 8;
-int sensor_pin = A0;  // El sensor de humedad conectado al pin A0
-int output_value;
-
 const int rs = 2, en = 3, d4 = 4, d5 = 5, d6 = 6, d7 = 7;
 
+/* RS PIN 2
+E PIN 3
+D4 PIN 4
+D5 PIN 5
+D6 PIN 6
+D7 PIN 7 */
 
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
