@@ -1,0 +1,38 @@
+#include <LiquidCrystal.h>
+
+int relayPin = 8;
+int sensor_pin = A0;  // El sensor de humedad conectado al pin A0
+int output_value;
+
+const int rs = 2, en = 3, d4 = 4, d5 = 5, d6 = 6, d7 = 7;
+
+
+LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(relayPin, OUTPUT);
+  pinMode(sensor_pin, INPUT);
+  Serial.println("Leyendo desde el sensor...");
+  delay(2000);
+
+  //setup Pantalla
+  lcd.begin(16, 2);
+}
+
+void loop() {
+  output_value = analogRead(sensor_pin);
+  output_value = map(output_value, 550, 10, 0, 100);
+  Serial.print("Humedad: ");
+  Serial.print(output_value);
+  Serial.println("%");
+  if (output_value > 20) {
+    digitalWrite(relayPin, LOW);
+  } else {
+    digitalWrite(relayPin, HIGH);
+  }   
+
+  lcd.setCursor(0, 0);
+  lcd.print("hola");
+  delay(1000);
+}
